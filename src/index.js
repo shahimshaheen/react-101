@@ -3,11 +3,46 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import { green, purple, orange, red, yellow, pink } from '@mui/material/colors';
+
+// import { ThemeProvider, createTheme } from '@mui/material';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+const theme = createTheme({
+    palette: {
+          primary: {
+            main: purple[700],
+            
+          },
+          secondary:{
+            main:yellow[700]
+            
+          }
+    },
+    components: {
+          // Name of the component
+          MuiButton: {
+            styleOverrides: {
+              // Name of the slot
+                  root: {
+                    // Some CSS
+                    fontSize: '20px',
+                    // color:'white'
+                  },
+            },
+          },
+    },
+});
+
+
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}> 
+        <App />
+    </ThemeProvider>
   </React.StrictMode>
 );
 
